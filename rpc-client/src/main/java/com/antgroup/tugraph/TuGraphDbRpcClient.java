@@ -10,6 +10,8 @@ import com.baidu.brpc.client.RpcClient;
 import com.baidu.brpc.client.RpcClientOptions;
 import com.baidu.brpc.client.loadbalance.LoadBalanceStrategy;
 import com.baidu.brpc.protocol.Options;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.InvalidProtocolBufferException;
 import lgraph.Lgraph;
@@ -532,7 +534,8 @@ public class TuGraphDbRpcClient {
                                 resultItem.add(fieldData.getDatetime());
                                 break;
                             case STR:
-                                resultItem.add(JSON.parse(fieldData.getStr()));
+                                Gson gson = new Gson();
+                                resultItem.add(gson.fromJson(fieldData.getStr(), JsonObject.class));
                                 break;
                             case BLOB:
                                 resultItem.add(fieldData.getBlob());
