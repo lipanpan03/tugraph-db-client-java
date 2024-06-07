@@ -532,7 +532,7 @@ public class TuGraphDbRpcClient {
                                 resultItem.add(fieldData.getDatetime());
                                 break;
                             case STR:
-                                resultItem.add(fieldData.getStr());
+                                resultItem.add(JSON.parse(fieldData.getStr()));
                                 break;
                             case BLOB:
                                 resultItem.add(fieldData.getBlob());
